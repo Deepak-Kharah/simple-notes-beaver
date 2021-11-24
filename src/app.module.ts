@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import configuration from 'config/configuration';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { NotesModule } from './notes/notes.module';
 
 @Module({
   imports: [
@@ -12,10 +13,10 @@ import { AppService } from './app.service';
       load: [configuration],
       expandVariables: true,
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/nest', {}),
+    MongooseModule.forRoot(process.env.DATABASE_STRING),
+    NotesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
-console.log(process.env.DATABASE_STRING);
