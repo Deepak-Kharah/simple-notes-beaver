@@ -5,6 +5,8 @@ import configuration from 'config/configuration';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { NotesModule } from './notes/notes.module';
     }),
     MongooseModule.forRoot(process.env.DATABASE_STRING),
     NotesModule,
+    UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
