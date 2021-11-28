@@ -14,6 +14,7 @@ import { AuthModule } from './auth/auth.module';
       envFilePath: ['.env.development', '.env.production'],
       load: [configuration],
       expandVariables: true,
+      isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DATABASE_STRING),
     NotesModule,
