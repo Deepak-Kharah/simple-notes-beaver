@@ -2,6 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import * as cookieParser from 'cookie-parser';
 
 import { AppModule } from './app.module';
 
@@ -12,18 +13,17 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
 
+  app.use(cookieParser());
+
   const corsOptions: CorsOptions = {
     origin: (requestOrigin, callback) => {
-      const allowedOrigin: string[] = configService.get(
-        //@ts-ignore
-        'security.allowedCorsOrigin',
-      );
-      if (allowedOrigin.includes(requestOrigin)) {
-        callback(null, allowedOrigin);
-      } else {
-        callback(new Error('Not allowed by CORS'));
+      //@ts-ignore
+      const allowedCorsOrigin = configService.get('security.allowedCorsOrigin');
+      if (allowedCorsOrigin === "*" || allowedCorsOrigin === requestOrigin) {
+        callback(null, requestOrigin);
       }
     },
+    credentials: true,
   };
   app.enableCors(corsOptions);
 

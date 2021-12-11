@@ -15,7 +15,7 @@ export class AuthService {
     username: string,
     password: string,
   ): Promise<UserWithoutPassword> {
-    const existingUser = await this.usersService.findOne(username);
+    const existingUser = await this.usersService.findOneByUsername(username);
 
     const isPasswordEqual = await compare(password, existingUser.password);
 
@@ -27,8 +27,6 @@ export class AuthService {
   }
 
   async getJwtToken(user: UserWithoutPassword) {
-    return {
-      access_token: this.jwtService.sign({}, { subject: String(user._id) }),
-    };
+    return this.jwtService.sign({}, { subject: String(user.username) });
   }
 }

@@ -9,15 +9,17 @@ import { hash } from 'bcrypt';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserDocument } from './schemas/users.schema';
-
-const saltRounds = 10;
+import { ConfigService } from '@nestjs/config';
 
 export declare interface UserWithoutPassword
   extends Omit<FlattenMaps<LeanDocument<UserDocument>>, 'password'> {}
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    private configService: ConfigService,
+  ) {}
 
   async create(userDto: CreateUserDto): Promise<UserWithoutPassword> {
     const existingUser = await this.userModel
@@ -28,6 +30,7 @@ export class UsersService {
       throw new BadRequestException('User already exists');
     }
 
+    const saltRounds = this.configService.get<number>('auth.saltRounds');
     const passwordHash = await hash(userDto.password, saltRounds);
 
     const createdUser = await new this.userModel({
@@ -39,7 +42,7 @@ export class UsersService {
     return user;
   }
 
-  async findOne(username: string): Promise<UserDocument> {
+  async findOneByUsername(username: string): Promise<UserDocument> {
     const user = await this.userModel.findOne({ username }).exec();
 
     if (!user) {
