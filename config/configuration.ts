@@ -5,8 +5,10 @@ export default () => ({
     expirationTime: process.env.JWT_EXPIRATION_TIME || '1h',
   },
   security: {
-    allowedCorsOrigin: JSON.parse(process.env.ALLOWED_CORS_ORIGIN) || [
-      'http://localhost:3000',
-    ],
+    allowedCorsOrigin: process.env.ALLOWED_CORS_ORIGIN || '*',
+  },
+  auth: {
+    reservedUsernames: ['me', 'admin'],
+    saltRounds: parseInt(process.env.SALT_ROUNDS) || 10,
   },
 });

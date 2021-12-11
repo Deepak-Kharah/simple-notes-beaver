@@ -4,13 +4,13 @@ import {
   UseGuards,
   Request,
   Body,
-  Get,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 
 import { UserWithoutPassword } from 'src/users/users.service';
 import { AuthService } from './auth.service';
 import { LoginCredentialsDto } from './dto/login-credentials.dto';
-import { JwtAuthGuard } from './jwt-auth.guard';
 import { LocalAuthGuard } from './local-auth.guard';
 
 @Controller('auth')
@@ -19,16 +19,13 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  login(
+  async login(
     @Request() req: Request & { user: UserWithoutPassword },
     @Body() _loginCred: LoginCredentialsDto,
-  ) {
-    return this.authService.getJwtToken(req.user);
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Get('test')
-  test(@Request() req: Request & { user: any }) {
+    @Res({ passthrough: true }) response: Response,
+  ): Promise<UserWithoutPassword> {
+    const jwtToken = await this.authService.getJwtToken(req.user);
+    response.cookie('access_token', jwtToken, { httpOnly: true });
     return req.user;
   }
 }
