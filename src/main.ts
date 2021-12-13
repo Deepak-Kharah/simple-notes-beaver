@@ -17,9 +17,10 @@ async function bootstrap() {
 
   const corsOptions: CorsOptions = {
     origin: (requestOrigin, callback) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
       const allowedCorsOrigin = configService.get('security.allowedCorsOrigin');
-      if (allowedCorsOrigin === "*" || allowedCorsOrigin === requestOrigin) {
+      if (allowedCorsOrigin === '*' || allowedCorsOrigin === requestOrigin) {
         callback(null, requestOrigin);
       }
     },
@@ -27,6 +28,7 @@ async function bootstrap() {
   };
   app.enableCors(corsOptions);
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
   await app.listen(configService.get('port'));
 }

@@ -12,6 +12,7 @@ import { UserWithoutPassword } from 'src/users/users.service';
 import { AuthService } from './auth.service';
 import { LoginCredentialsDto } from './dto/login-credentials.dto';
 import { LocalAuthGuard } from './local-auth.guard';
+import { RequestWithUser } from './types/strategy.types';
 
 @Controller('auth')
 export class AuthController {
@@ -20,7 +21,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(
-    @Request() req: Request & { user: UserWithoutPassword },
+    @Request() req: RequestWithUser,
     @Body() _loginCred: LoginCredentialsDto,
     @Res({ passthrough: true }) response: Response,
   ): Promise<UserWithoutPassword> {
