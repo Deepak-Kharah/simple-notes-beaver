@@ -11,8 +11,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserDocument } from './schemas/users.schema';
 import { ConfigService } from '@nestjs/config';
 
-export declare interface UserWithoutPassword
-  extends Omit<FlattenMaps<LeanDocument<UserDocument>>, 'password'> {}
+export type UserWithoutPassword = Omit<
+  FlattenMaps<LeanDocument<UserDocument>>,
+  'password'
+>;
 
 @Injectable()
 export class UsersService {

@@ -7,6 +7,7 @@ import {
   Request,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { RequestWithUser } from 'src/auth/types/strategy.types';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService, UserWithoutPassword } from './users.service';
 
@@ -23,7 +24,7 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Get('me')
-  async getUser(@Request() req: Request & { user: UserWithoutPassword }) {
+  async getUser(@Request() req: RequestWithUser) {
     return req.user;
   }
 }
