@@ -37,7 +37,6 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response,
   ): Promise<LogoutMessageDto> {
     response.clearCookie('access_token');
-    console.log('mayhem', response);
     return {
       isLoggedOut: true,
       message: 'Successfully logged out',
