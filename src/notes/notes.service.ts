@@ -102,9 +102,6 @@ export class NotesService {
       //@ts-ignore
       note = user.notes.id(noteId);
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      console.log('note', note, user.notes.id(noteId));
       if (!note) {
         throw new NotFoundException(`Note does not exist`);
       }
@@ -113,8 +110,8 @@ export class NotesService {
     }
 
     try {
-      note.remove();
-      user.save();
+      await note.remove();
+      await user.save();
       return note;
     } catch (error) {
       console.error(error);
