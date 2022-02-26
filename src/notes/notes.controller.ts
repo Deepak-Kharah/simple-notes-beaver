@@ -34,8 +34,6 @@ export class NotesController {
   findAll(@Request() request: RequestWithUser): NoteReturnDto[] {
     const notes = request.user.notes;
 
-    console.log(request.user);
-
     return notes;
   }
   @UseGuards(JwtAuthGuard)
