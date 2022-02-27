@@ -1,73 +1,55 @@
+# Simple Notes Beaver
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+<img src="static/simply-notes-beaver.png" width="150" height="150" />
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Simple Notes Beaver is the backend project of the Simply Note. Nest.js is used to build this project. Simple Notes Falcon uses this project to get the data to display to the user.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This project serves as an instrument to learn backend techniques used in the production environment. Hence, the Simple Notes beaver supports only the CRUD operation.
 
-## Description
+# Get started
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Install the dependencies
 
-## Installation
+  Run the following command in the terminal at current directory.
 
-```bash
-$ npm install
-```
+  ```sh
+  npm install
+  ```
 
-## Running the app
+- Set up a MongoDB server
 
-```bash
-# development
-$ npm run start
+  Use mongoDB atlas to create a new server and note the credentials for next step
 
-# watch mode
-$ npm run start:dev
+- Set up environment variables
 
-# production mode
-$ npm run start:prod
-```
+  Create a new file at the root of the project, named `.env.development` and copy the content of `.env.example`. Now, replace the pseudo configuration with actual details.
 
-## Test
+- (optional) Tweak the configurations
 
-```bash
-# unit tests
-$ npm run test
+  There are some configurations present at `config/configuration.ts`, these configuration could be updated as needed.
 
-# e2e tests
-$ npm run test:e2e
+- Run the project
+  For development, run the following command to run the project in watch mode.
+  ```sh
+  npm run start:dev
+  ```
 
-# test coverage
-$ npm run test:cov
-```
+# Principle
 
-## Support
+There are no such accentuated principles to follow. Still, I made some proactive decisions during the entire process. Hence, you could find some design decisions like reserving usernames like **me**, **admin** and **anonymous**.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# The Future
 
-## Stay in touch
+I might experiment with new techniques that will enhance this project. Some enhancements are logging support, test suites and more CI/CD workflow to the project. But, there is no defined outline as of now.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# License
 
-## License
+Copyright 2022 Deepak Kharah
 
-Nest is [MIT licensed](LICENSE).
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
