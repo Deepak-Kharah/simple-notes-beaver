@@ -4,7 +4,7 @@
 <img src="static/simply-notes-beaver.png" width="150" height="150" />
 </p>
 
-Simple Notes Beaver is the backend project of the Simply Note. Nest.js is used to build this project. Simple Notes Falcon uses this project to get the data to display to the user.
+Simple Notes Beaver is the backend project of the Simply Note. Nest.js is used to build this project. [Simple Notes Falcon](https://github.com/Deepak-Kharah/simple-notes-falcon) uses this project to get the data to display to the user.
 
 This project serves as an instrument to learn backend techniques used in the production environment. Hence, the Simple Notes beaver supports only the CRUD operation.
 
