@@ -25,7 +25,7 @@ export class UsersService {
 
   async create(userDto: CreateUserDto): Promise<UserWithoutPassword> {
     const existingUser = await this.userModel
-      .findOne({ username: userDto.username })
+      .findOne({ username: { $eq: userDto.username }})
       .exec();
 
     if (existingUser) {
